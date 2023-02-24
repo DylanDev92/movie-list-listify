@@ -15,3 +15,7 @@ input:focus {
 input::placeholder {
   color: #414141;
 }
+
+span::first-letter {
+  text-transform:capitalize;
+}

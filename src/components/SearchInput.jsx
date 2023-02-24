@@ -1,7 +1,7 @@
 import React from 'react'
 import search from "../assets/search.svg"
 
-function SearchInput() {
+function SearchInput(props) {
   return (
     <div  style={{
         backgroundColor: "#AF0404",
@@ -19,6 +19,8 @@ function SearchInput() {
             borderStyle: "none",
             color: "#414141",
             fontWeight: "700"
+        }} onChange={(e) => {
+          props.setsearch(e.target.value)
         }}></input>
     </div>
   )
