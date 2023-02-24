@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -9,7 +9,11 @@ import ShowInfo from "./components/ShowInfo";
 function App() {
   const [movieList, setList] = useState();
 
-  const [search, setSearch] = useState()
+  const myRef = useRef(null)
+
+  const [search, setSearch] = useState("");
+
+  const [selectedMovie, setSelectedMovie] = useState("")
 
   useEffect(() => {
     getList(search == "" ? "Avengers" : search);
@@ -32,14 +36,14 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <ShowInfo />
+      <Header myRef={myRef} />
+      <ShowInfo movieid={selectedMovie}/>
       <SearchInput setsearch={setSearch} />
 
       <div>
         {movieList?.map((x, id) => {
           return (
-            <MovieResult key={id} title={x.Title} year={x.Year} type={x.Type} poster={x.Poster}/>
+            <MovieResult myRef={myRef} setmovie={setSelectedMovie} movieid={x.imdbID} key={id} title={x.Title} year={x.Year} type={x.Type} poster={x.Poster}/>
           );
         })}
       </div>

@@ -14,6 +14,10 @@ function MovieResult(props) {
         borderRadius: "10px",
         margin: "0px 30px 10px 30px",
       }}
+      onClick={(e) => {
+        props.setmovie(props.movieid);
+        props.myRef.current.scrollIntoView()
+      }}
     >
       <div style={{
         width: "50%"

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useRef} from 'react'
 
-function Header() {
+function Header(props) {
   return (
-    <div>
+    <div ref={props.myRef}>
         <header style={{
             backgroundColor: "#252525",
             display: "flex",
