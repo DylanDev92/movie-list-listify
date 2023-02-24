@@ -9,11 +9,11 @@ import ShowInfo from "./components/ShowInfo";
 function App() {
   const [movieList, setList] = useState();
 
-  const myRef = useRef(null)
+  const myRef = useRef(null);
 
   const [search, setSearch] = useState("");
 
-  const [selectedMovie, setSelectedMovie] = useState("")
+  const [selectedMovie, setSelectedMovie] = useState("");
 
   useEffect(() => {
     getList(search == "" ? "Avengers" : search);
@@ -25,7 +25,8 @@ function App() {
       "http://www.omdbapi.com/?apikey=" +
         process.env.REACT_APP_API_KEY +
         "&s=" +
-        search + ""
+        search +
+        ""
     ).then((x) => {
       x.json().then((json) => {
         console.log(json);
@@ -36,14 +37,29 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        ></meta>
+      </header>
       <Header myRef={myRef} />
-      <ShowInfo movieid={selectedMovie}/>
+      <ShowInfo movieid={selectedMovie} />
       <SearchInput setsearch={setSearch} />
 
       <div>
         {movieList?.map((x, id) => {
           return (
-            <MovieResult myRef={myRef} setmovie={setSelectedMovie} movieid={x.imdbID} key={id} title={x.Title} year={x.Year} type={x.Type} poster={x.Poster}/>
+            <MovieResult
+              myRef={myRef}
+              setmovie={setSelectedMovie}
+              movieid={x.imdbID}
+              key={id}
+              title={x.Title}
+              year={x.Year}
+              type={x.Type}
+              poster={x.Poster}
+            />
           );
         })}
       </div>
