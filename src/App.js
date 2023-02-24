@@ -37,12 +37,6 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        ></meta>
-      </header>
       <Header myRef={myRef} />
       <ShowInfo movieid={selectedMovie} />
       <SearchInput setsearch={setSearch} />
